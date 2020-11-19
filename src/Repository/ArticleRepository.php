@@ -19,6 +19,19 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
     }
 
+    public function findArticleByPriceLessThan($prix)
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.prix < :val')
+            ->setParameter('val', $prix)
+            //->orderBy('a.id', 'ASC')
+            //->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+
     // /**
     //  * @return Article[] Returns an array of Article objects
     //  */

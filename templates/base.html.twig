@@ -5,9 +5,62 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        {% block stylesheets %}{% endblock %}
+
+  <style>
+  
+   .custom-file-input ~ .custom-file-label::after {
+    content: "Parcourir";
+}
+  </style>
+        {% block stylesheets %}
+        
+        
+        {% endblock %}
     </head>
     <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="#">Creamind</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{{path('app_accueil')}}">Accueil</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{path('articles')}}">Faîtes vos achats</a>
+      </li>
+
+      {% if not app.user %}
+       <li class="nav-item">
+        <a class="nav-link" href="{{path('app_login')}}">Connexion</a>
+      </li>
+
+       <li class="nav-item">
+        <a class="nav-link" href="{{path('app_register')}}">Inscription</a>
+      </li>
+
+    {% else %}
+       <li class="nav-item">
+        <a class="nav-link" href="{{path('app_logout')}}">Déconnexion</a>
+      </li>
+    {% endif %}
+
+     {% if is_granted('ROLE_ADMIN') %}
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Administration
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{{path('categorie_ajout')}}">Gestion des categories</a>
+          <a class="dropdown-item" href="{{path('admin_article_create')}}">Gestion des articles</a>
+      </li>
+     {% endif %}
+    </ul>
+  </div>
+</nav>
         {% block body %}{% endblock %}
 
 
@@ -19,6 +72,7 @@
 
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+          <script src="{{asset('js/main.js')}}"></script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>
