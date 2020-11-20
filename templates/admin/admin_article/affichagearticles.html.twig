@@ -32,6 +32,7 @@
                                 <th>Date maj</th>
                                 <th>Titre</th>
                                 <th>Description</th>
+                                <th>Prix</th>
                                 <th>Image</th>
                                 <th>Statut</th>
                                 <th>Actions</th>
@@ -56,6 +57,7 @@
                                             <span class="badge badge-info">{{cat.nom}}</span>
                                          {% endfor %}
                                     </td>
+                                    <td>{{article.prix}}</td>
                                     <td>
                                         <img src="{{ asset('images/uploads/articles/'~ article.image) }}"  width="100" alt="{{article.slug}}">
                                     </td>
@@ -68,12 +70,12 @@
 
                                         <a href="{{path('admin_article_edit',{'id':article.id})}}" class="btn btn-warning">Editer</a>
 
-                                       {# <form method="POST" action="{{path('admin_article_delete',{'id':article.id})}}"
+                                        <form method="POST" action="{{path('admin_article_delete',{'id':article.id})}}"
                                               onSubmit ="return confirm('Confirmer la suppression ?')" style="display:inline-block">
                                             <input type="hidden" name="_method" value="SUP">
                                             <input type="hidden" name="_token" value="{{csrf_token('SUP' ~ article.id)}}">
                                             <input type="submit" class="btn btn-danger" value="Delete">
-                                        </form>#}
+                                        </form>
 
                                     </td>
                                 </tr>

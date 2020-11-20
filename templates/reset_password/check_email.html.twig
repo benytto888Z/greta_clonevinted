@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Email de recuperation de mot de passe{% endblock %}
+
+{% block body %}
+    <p>Un courriel contenant le lien de modifiaction de votre mot de passe vous a été envoyé . Ce lien expire dans {{ tokenLifetime|date('g') }} heure(s).</p>
+    <p>Vérifier votre spam si possible  <a href="{{ path('app_forgot_password_request') }}">Réessayer</a>.</p>
+{% endblock %}

@@ -24,13 +24,34 @@ class ArticleRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('a')
             ->andWhere('a.prix < :val')
             ->setParameter('val', $prix)
-            //->orderBy('a.id', 'ASC')
-            //->setMaxResults(10)
+           // ->orderBy('a.id', 'ASC')
+           // ->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;
     }
 
+    public function filterArticleBy($mot)
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = 'SELECT * FROM Article a
+                WHERE a.titre like :mot
+                ORDER BY a.titre ASC';
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(['mot' => '%'.$mot.'%']);
+
+        return $stmt->fetchAllAssociativeIndexed();
+    }
+
+    public function filterArticlesBy($mot)
+    {
+        return $this->createQueryBuilder('Article')
+        ->andWhere('Article.titre LIKE :val')
+        ->setParameter('val', '%'.$mot.'%')
+        ->getQuery()
+        ->execute();
+    }
 
     // /**
     //  * @return Article[] Returns an array of Article objects

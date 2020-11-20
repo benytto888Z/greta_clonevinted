@@ -23,8 +23,9 @@
                                 </ul>
                                 <a href="{{ path('article_details',{'slug':article.slug}) }}">
                                     <h1>
-                                       {{article.titre}}
+                                       {{article.titre}} 
                                     </h1>
+                                    <div class="badge badge-danger">{{article.prix}} €</div>
                                 </a>
                                 <p>
                                     {{ article.description | slice(0,30) | raw }}...

@@ -30,7 +30,7 @@
         <a class="nav-link" href="{{path('app_accueil')}}">Accueil</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{path('articles')}}">Faîtes vos achats</a>
+        <a class="nav-link" href="{{path('articles')}}">Boutique</a>
       </li>
 
       {% if not app.user %}
@@ -55,10 +55,24 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="{{path('categorie_ajout')}}">Gestion des categories</a>
-          <a class="dropdown-item" href="{{path('admin_article_create')}}">Gestion des articles</a>
+          <a class="dropdown-item" href="{{path('admin_affichage_articles')}}">Gestion des articles</a>
       </li>
      {% endif %}
     </ul>
+
+     <form action="{{path('user_articles_search')}}" method="POST" class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" name="motrecherche" placeholder="Rechercher" aria-label="Search">
+      <!--<input class="form-control mr-sm-2" type="search" name="categorie" placeholder="Categorie" aria-label="Search">-->
+      <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Rechercher</button>
+    </form> 
+
+ {#
+    {{ form_start(SearchForm, {'attr':{'class':'form-inline my-2 my-lg-0'}}) }}
+    {{ form_row(SearchForm.search, {'label': "Recherche ", 'attr': {'class':'form-control mx-2','placeholder': 'mot clé...'}}) }}
+         {{ form_widget(SearchForm) }}
+        <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Rechercher</button>
+    {{ form_end(SearchForm) }}#}
+
   </div>
 </nav>
         {% block body %}{% endblock %}

@@ -1,0 +1,9 @@
+<h1>Vintedclone.com</h1>
+
+<p>Veuillez cliquer sur ce lien pour modifier votre mot de passe</p>
+
+<a href="{{ url('app_reset_password', {token: resetToken.token}) }}">{{ url('app_reset_password', {token: resetToken.token}) }}</a>
+
+<p>Ce lien expire dans {{ tokenLifetime|date('g') }} heure(s).</p>
+
+<p>Bonne chance!</p>
